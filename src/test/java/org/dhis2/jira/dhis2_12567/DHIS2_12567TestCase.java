@@ -86,8 +86,10 @@ public class DHIS2_12567TestCase
     @Test
     public void test()
     {
-        when().get( "api/filledOrganisationUnitLevels" ).then().statusCode( 200 ).body( "$", not( hasKey( "id" ) ) );
+        when().get( "api/filledOrganisationUnitLevels" ).then().statusCode( 200 ).body( "$", not( hasKey( "id" ) ) )
+            .log().body();
         createOrgUnitLevel();
-        when().get( "api/filledOrganisationUnitLevels" ).then().statusCode( 200 ).body( "id", notNullValue() );
+        when().get( "api/filledOrganisationUnitLevels" ).then().statusCode( 200 ).body( "id", notNullValue() ).log()
+            .body();
     }
 }
